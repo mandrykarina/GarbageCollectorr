@@ -1,0 +1,47 @@
+{
+  "name": "Cascade Delete (depth=4)",
+  "description": "Removing ROOT triggers cascade delete for all linked objects",
+  "operations": [
+    {
+      "type": "allocate",
+      "object_id": 1
+    },
+    {
+      "type": "allocate",
+      "object_id": 2
+    },
+    {
+      "type": "allocate",
+      "object_id": 3
+    },
+    {
+      "type": "allocate",
+      "object_id": 4
+    },
+    {
+      "type": "add_ref",
+      "from_id": 0,
+      "to_id": 1
+    },
+    {
+      "type": "add_ref",
+      "from_id": 1,
+      "to_id": 2
+    },
+    {
+      "type": "add_ref",
+      "from_id": 2,
+      "to_id": 3
+    },
+    {
+      "type": "add_ref",
+      "from_id": 3,
+      "to_id": 4
+    },
+    {
+      "type": "remove_ref",
+      "from_id": 0,
+      "to_id": 1
+    }
+  ]
+}

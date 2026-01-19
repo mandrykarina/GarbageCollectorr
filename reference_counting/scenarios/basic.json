@@ -1,0 +1,48 @@
+{
+  "name": "Basic RC (n=3)",
+  "description": "Each object is a root and freed immediately when root is removed",
+  "operations": [
+    {
+      "type": "allocate",
+      "object_id": 1
+    },
+    {
+      "type": "allocate",
+      "object_id": 2
+    },
+    {
+      "type": "allocate",
+      "object_id": 3
+    },
+    {
+      "type": "add_ref",
+      "from_id": 0,
+      "to_id": 1
+    },
+    {
+      "type": "add_ref",
+      "from_id": 0,
+      "to_id": 2
+    },
+    {
+      "type": "add_ref",
+      "from_id": 0,
+      "to_id": 3
+    },
+    {
+      "type": "remove_ref",
+      "from_id": 0,
+      "to_id": 1
+    },
+    {
+      "type": "remove_ref",
+      "from_id": 0,
+      "to_id": 2
+    },
+    {
+      "type": "remove_ref",
+      "from_id": 0,
+      "to_id": 3
+    }
+  ]
+}

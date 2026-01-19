@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reference Counting GC Visualizer</title>
+    <link rel="stylesheet" href="static/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.21.1/cytoscape.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- ЗАГОЛОВОК -->
+        <div class="header">
+            <h1>🗑️ Reference Counting GC Visualizer</h1>
+            <p>Визуализация работы сборщика мусора с подсчетом ссылок</p>
+        </div>
+
+        <div class="main-grid">
+            <!-- ЛЕВАЯ ПАНЕЛЬ: ПАРАМЕТРЫ -->
+            <div class="panel params-panel">
+                <h2>⚙️ Параметры</h2>
+                
+                <div class="form-group">
+                    <label>Тип сценария:</label>
+                    <select id="scenarioType">
+                        <option value="basic">📦 Basic (Простой)</option>
+                        <option value="cascade">📊 Cascade (Каскад удаления)</option>
+                        <option value="cycle">💥 Cycle (Циклические ссылки)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label id="paramLabel">Объектов:</label>
+                    <div class="slider-container">
+                        <input type="range" id="paramSlider" min="1" max="10" value="3" class="slider">
+                        <span id="paramValue">3</span>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button id="runTest" class="btn btn-primary">▶ Запустить тест</button>
+                    <button id="clearLogs" class="btn btn-secondary">🗑️ Очистить</button>
+                </div>
+
+                <!-- КОНТРОЛЫ ШАГОВ -->
+                <div class="step-controls">
+                    <h3>📍 Пошаговое выполнение</h3>
+                    <div class="step-info">
+                        <span>Шаг: <strong id="step-indicator">0/0</strong></span>
+                    </div>
+                    <div class="button-group">
+                        <button id="prevStep" class="btn btn-secondary">⬅️ Предыдущий</button>
+                        <button id="nextStep" class="btn btn-primary">➡️ Следующий шаг</button>
+                    </div>
+                    <div class="button-group">
+                        <button id="autoPlay" class="btn btn-success" style="flex: 1;">▶️ Автопроигрывание</button>
+                    </div>
+                </div>
+
+                <div id="status" class="status">Ожидание...</div>
+            </div>
+
+            <!-- ЦЕНТРАЛЬНАЯ ПАНЕЛЬ: ВИЗУАЛИЗАЦИЯ -->
+            <div class="panel visualization-panel">
+                <h2>📊 Визуализация</h2>
+                <div id="graph-container" class="graph-container"></div>
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #4CAF50;"></div>
+                        <span>Живой объект</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #FFD700; border: 2px solid #333;"></div>
+                        <span>ROOT ссылка</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #9E9E9E;"></div>
+                        <span>Удален</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #FF5252;"></div>
+                        <span>УТЕЧКА</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ПРАВАЯ ПАНЕЛЬ: СТАТИСТИКА -->
+            <div class="panel stats-panel">
+                <h2>📈 Статистика</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">Выделено объектов</div>
+                        <div class="stat-value" id="allocated">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Удалено объектов</div>
+                        <div class="stat-value" id="deleted">0</div>
+                    </div>
+                    <div class="stat-card stat-error">
+                        <div class="stat-label">УТЕЧКИ памяти</div>
+                        <div class="stat-value" id="leaks">0</div>
+                    </div>
+                </div>
+
+                <h3>📋 События</h3>
+                <div class="events-container">
+                    <table id="events-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Событие</th>
+                                <th>Описание</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="3" style="text-align: center; padding: 20px; color: #999;">Нет событий</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/visualization.js"></script>
+</body>
+</html>
