@@ -1,0 +1,27 @@
+{
+  "scenario_name": "Cascade Deletion Test",
+  "description": "Test cascade deletion algorithm",
+  "collection_type": "cascade",
+  "operations": [
+    {"op": "allocate", "size": 1024},
+    {"op": "make_root", "id": 0},
+    {"op": "allocate", "size": 512},
+    {"op": "add_ref", "from": 0, "to": 1},
+    {"op": "allocate", "size": 512},
+    {"op": "add_ref", "from": 1, "to": 2},
+    {"op": "allocate", "size": 512},
+    {"op": "add_ref", "from": 1, "to": 3},
+    {"op": "allocate", "size": 512},
+    {"op": "add_ref", "from": 2, "to": 4},
+    {"op": "allocate", "size": 512},
+    {"op": "add_ref", "from": 3, "to": 5},
+    {"op": "allocate", "size": 256},
+    {"op": "allocate", "size": 256},
+    {"op": "collect"},
+    {"op": "remove_ref", "from": 1, "to": 2},
+    {"op": "remove_ref", "from": 1, "to": 3},
+    {"op": "allocate", "size": 256},
+    {"op": "add_ref", "from": 0, "to": 8},
+    {"op": "collect"}
+  ]
+}

@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Wextra -Wpedantic -g CMakeFiles/simulator.dir/src/mark_sweep_gc.cpp.o CMakeFiles/simulator.dir/src/simulator.cpp.o -o bin/simulator 

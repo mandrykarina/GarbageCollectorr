@@ -1,0 +1,7 @@
+/home/user/Важное/Проекты/Garbage_Collectors/mark_sweep/scenarios/CMakeFiles/simulator.dir
+/home/user/Важное/Проекты/Garbage_Collectors/mark_sweep/scenarios/CMakeFiles/edit_cache.dir
+/home/user/Важное/Проекты/Garbage_Collectors/mark_sweep/scenarios/CMakeFiles/rebuild_cache.dir
+/home/user/Важное/Проекты/Garbage_Collectors/mark_sweep/scenarios/CMakeFiles/list_install_components.dir
+/home/user/Важное/Проекты/Garbage_Collectors/mark_sweep/scenarios/CMakeFiles/install.dir
+/home/user/Важное/Проекты/Garbage_Collectors/mark_sweep/scenarios/CMakeFiles/install/local.dir
+/home/user/Важное/Проекты/Garbage_Collectors/mark_sweep/scenarios/CMakeFiles/install/strip.dir

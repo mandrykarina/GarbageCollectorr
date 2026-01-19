@@ -1,0 +1,16 @@
+{
+  "scenario_name": "Basic Mark-Sweep",
+  "description": "Simple scenario: allocate objects, create references, collect garbage",
+  "max_heap_size": 1048576,
+  "operations": [
+    {"op": "allocate", "size": 256, "description": "Allocate object A"},
+    {"op": "allocate", "size": 256, "description": "Allocate object B"},
+    {"op": "allocate", "size": 256, "description": "Allocate object C"},
+    {"op": "make_root", "id": 0, "description": "Mark object_0 as root"},
+    {"op": "add_ref", "from": 0, "to": 1, "description": "Create chain 0->1"},
+    {"op": "add_ref", "from": 1, "to": 2, "description": "Create chain 1->2"},
+    {"op": "collect", "description": "First collection"},
+    {"op": "remove_ref", "from": 0, "to": 1, "description": "Break chain"},
+    {"op": "collect", "description": "Second collection"}
+  ]
+}

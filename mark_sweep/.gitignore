@@ -1,0 +1,19 @@
+# Сборки
+build/
+*.o
+*.out
+*.exe
+
+# Python
+__pycache__/
+*.pyc
+venv/
+
+# Логи
+logs/*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

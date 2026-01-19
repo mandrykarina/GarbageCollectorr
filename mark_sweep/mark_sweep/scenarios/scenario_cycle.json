@@ -1,0 +1,17 @@
+{
+  "scenario_name": "Cyclic References - KILL TEST for RC",
+  "description": "Demonstrates why RC fails: cyclic references that M&S handles correctly",
+  "max_heap_size": 1048576,
+  "operations": [
+    {"op": "allocate", "size": 512, "description": "Allocate object_0 (root holder)"},
+    {"op": "allocate", "size": 512, "description": "Allocate object_1"},
+    {"op": "allocate", "size": 512, "description": "Allocate object_2"},
+    {"op": "make_root", "id": 0, "description": "Make object_0 root (always reachable)"},
+    {"op": "add_ref", "from": 0, "to": 1, "description": "Create reference: object_0 -> object_1"},
+    {"op": "add_ref", "from": 1, "to": 2, "description": "Create reference: object_1 -> object_2"},
+    {"op": "add_ref", "from": 2, "to": 1, "description": "CREATE CYCLE: object_2 -> object_1 (now 1 <-> 2)"},
+    {"op": "collect", "description": "Collection 1: all reachable from root, NOTHING deleted"},
+    {"op": "remove_ref", "from": 0, "to": 1, "description": "BREAK root connection: object_0 -X-> object_1"},
+    {"op": "collect", "description": "Collection 2: objects 1,2 become unreachable BUT STILL REFERENCE EACH OTHER! M&S DELETES THEM - RC FAILS HERE"}
+  ]
+}
